@@ -29,10 +29,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
-        http.authorizeRequests()
-                .anyRequest().authenticated() // Требуется аутентификация для всех запросов
+        http.csrf().disable()
+                .authorizeRequests()
+                .requestMatchers("/auth/login", "/error").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .httpBasic();;
+                .formLogin().loginPage("/auth/login")
+                .loginProcessingUrl("/process_login")
+                .defaultSuccessUrl("/hello", true)
+                .failureUrl("/auth/login?error");
         return http.build();
     }
 
