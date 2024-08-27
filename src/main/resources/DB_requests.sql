@@ -13,3 +13,11 @@ INSERT INTO Person(username, year_of_birth, password) VALUES('test_user2', 1980,
 DELETE FROM Person;
 
 SELECT * FROM Person;
+
+TRUNCATE TABLE Person;
+
+ALTER TABLE Person ADD COLUMN role varchar(100) NOT NULL;
+
+INSERT INTO Person(username, year_of_birth, password, role) VALUES('test_user1', 1970, 'test_password', 'ROLE_USER');
+
+UPDATE Person SET role='ROLE_ADMIN' WHERE username='admin';

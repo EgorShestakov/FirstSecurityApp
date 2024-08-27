@@ -31,8 +31,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
         http.authorizeRequests()
+                .requestMatchers("/admin").hasRole("ADMIN")
                 .requestMatchers("/auth/login", "/error", "/auth/registration").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")
