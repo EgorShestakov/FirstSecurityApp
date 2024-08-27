@@ -30,8 +30,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
-        http.csrf().disable()
-                .authorizeRequests()
+        http.authorizeRequests()
                 .requestMatchers("/auth/login", "/error", "/auth/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
