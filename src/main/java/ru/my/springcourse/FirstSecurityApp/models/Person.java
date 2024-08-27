@@ -12,10 +12,10 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "Имя не может быть пустым")
     @Column(name = "username")
     private String username;
 
-    @NotEmpty(message = "Год рождения не может быть пустым")
     @Min(value = 1900, message = "Год не может быть меньше 1900")
     @Column(name = "year_of_birth")
     private int yearOfBirth;

@@ -11,3 +11,5 @@ INSERT INTO Person(username, year_of_birth, password) VALUES('test_user1', 1980,
 INSERT INTO Person(username, year_of_birth, password) VALUES('test_user2', 1980, 'test_password');
 
 DELETE FROM Person;
+
+SELECT * FROM Person;
